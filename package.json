@@ -1,0 +1,14 @@
+{
+  "name": "eldershield-ai-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ElderShield AI — Explainable scam-risk detection platform for elderly users",
+  "scripts": {
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:backend": "npm --prefix backend run build",
+    "build:frontend": "npm --prefix frontend run build",
+    "seed:backend": "npm --prefix backend run seed",
+    "install:all": "npm --prefix backend install && npm --prefix frontend install"
+  }
+}

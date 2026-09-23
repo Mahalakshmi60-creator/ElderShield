@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Elder Accessibility Font Sizing */
+body.font-scale-large {
+  font-size: 112%;
+}
+
+body.font-scale-xlarge {
+  font-size: 125%;
+}
+
+/* High Contrast Accessibility Mode */
+body.high-contrast {
+  filter: contrast(115%);
+}
+
+body.high-contrast button {
+  outline: 2px solid currentColor;
+}
+
+/* Elder-Friendly Focus Rings */
+:focus-visible {
+  outline: 3px solid #0284c7;
+  outline-offset: 3px;
+}
+
+/* Pulse animation for voice assistant recording */
+@keyframes voice-ripple {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 25px rgba(220, 38, 38, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+  }
+}
+
+.animate-voice-ripple {
+  animation: voice-ripple 2s infinite;
+}
