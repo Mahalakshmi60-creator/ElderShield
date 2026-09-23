@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: eldershield-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install && npm run build && node -e "const {initDatabase} = require('./dist/config/database'); initDatabase(); const {hashPassword} = require('./dist/utils/password'); async function seed() { const {DatabaseSync} = require('node:sqlite'); const db = new DatabaseSync(process.env.DATABASE_PATH || './data/eldershield.db'); const existing = db.prepare('SELECT id FROM users WHERE email = ?').get('admin@eldershield.ai'); if (!existing) { console.log('Seeding admin...'); } } seed().catch(console.error);" || true
+    startCommand: npm run seed-prod && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_PATH
+        value: ./data/eldershield.db
+      - key: FRONTEND_URL
+        value: https://eldershield-ai.vercel.app
+    disk:
+      name: eldershield-db
+      mountPath: /opt/render/project/src/backend/data
+      sizeGB: 1
