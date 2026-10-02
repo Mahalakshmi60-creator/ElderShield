@@ -6,6 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
+    host: true,
+    allowedHosts: true,
     proxy: {
       '/api': {
         target: 'http://localhost:5000',
@@ -20,8 +22,7 @@ export default defineConfig({
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'charts-vendor': ['recharts'],
-          'icons-vendor': ['lucide-react'],
-          'ui-vendor': ['sonner', 'date-fns']
+          'icons-vendor': ['lucide-react']
         }
       }
     }
